@@ -78,28 +78,46 @@ function ResidentRow({ dj, index }: { dj: Resident; index: number }) {
         reversed ? "md:[&>*:first-child]:order-2" : ""
       }`}
     >
-      {/* Bilde / plassholder */}
-      <div className="relative aspect-square md:aspect-auto md:min-h-[560px] bg-ink-100 border-ink-300 md:border-r">
-        {dj.image ? (
-          <Image
-            src={dj.image}
-            alt={`Portrett — ${dj.name}`}
-            fill
-            className="object-cover object-center grayscale"
-            sizes="(min-width: 768px) 50vw, 100vw"
-          />
-        ) : (
-          // Svart plassholder inntil bilde finnes
-          <div
-            aria-label={`Plassholder — ${dj.name}`}
-            className="absolute inset-0 bg-ink-100 flex items-end p-6 md:p-10"
-          >
-            <span className="font-mono text-[10px] tracking-meta uppercase text-ink-600">
-              Bilde kommer
-            </span>
-          </div>
-        )}
-      </div>
+      {/* Bilde / plassholder — wrappet i Instagram-lenke hvis tilgjengelig */}
+      {dj.instagram ? (
+        <a
+          href={dj.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="relative aspect-square md:aspect-auto md:min-h-[560px] bg-ink-100 border-ink-300 md:border-r group"
+        >
+          {dj.image && (
+            <Image
+              src={dj.image}
+              alt={`Portrett — ${dj.name}`}
+              fill
+              className="object-cover object-center grayscale transition-opacity duration-300 group-hover:opacity-80"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          )}
+        </a>
+      ) : (
+        <div className="relative aspect-square md:aspect-auto md:min-h-[560px] bg-ink-100 border-ink-300 md:border-r">
+          {dj.image ? (
+            <Image
+              src={dj.image}
+              alt={`Portrett — ${dj.name}`}
+              fill
+              className="object-cover object-center grayscale"
+              sizes="(min-width: 768px) 50vw, 100vw"
+            />
+          ) : (
+            <div
+              aria-label={`Plassholder — ${dj.name}`}
+              className="absolute inset-0 bg-ink-100 flex items-end p-6 md:p-10"
+            >
+              <span className="font-mono text-[10px] tracking-meta uppercase text-ink-600">
+                Bilde kommer
+              </span>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Tekstblokk */}
       <div className="flex flex-col justify-center px-6 md:px-16 py-16 md:py-24">

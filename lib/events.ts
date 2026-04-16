@@ -16,6 +16,7 @@
 export type Dj = {
   name: string;
   image?: string; // sti under /public, f.eks. "/images/djs/dvask.jpg"
+  instagram?: string; // full URL til Instagram-profil
 };
 
 export type EventNight = {
@@ -63,10 +64,10 @@ export const KORSA: Event = {
       day: "Fredag",
       genre: "Drum & Bass",
       lineup: [
-        { name: "Dvask", image: "/images/djs/dvask.jpg" },
-        { name: "Difee", image: "/images/lineup/difee.jpg" },
-        { name: "Simon Peter", image: "/images/lineup/simon-peter.jpg" },
-        { name: "Burge", image: "/images/djs/burge.jpg" },
+        { name: "Dvask", image: "/images/djs/dvask.jpg", instagram: "https://www.instagram.com/hakonbreivik/" },
+        { name: "Difee", image: "/images/lineup/difee.jpg", instagram: "https://www.instagram.com/difeemusic/" },
+        { name: "Simon Peter", image: "/images/lineup/simon-peter.jpg", instagram: "https://www.instagram.com/dekallermegsimon/" },
+        { name: "Burge", image: "/images/djs/burge.jpg", instagram: "https://www.instagram.com/djburge_/" },
       ],
     },
     {
@@ -75,13 +76,14 @@ export const KORSA: Event = {
       day: "Lørdag",
       genre: "Techno",
       lineup: [
-        { name: "Betong", image: "/images/lineup/betong.jpg" },
+        { name: "Betong", image: "/images/lineup/betong.jpg", instagram: "https://www.instagram.com/betong__/" },
         {
           name: "Bick Dick Bandido",
           image: "/images/lineup/bick-dick-bandido.jpg",
+          instagram: "https://www.instagram.com/bigdickbandido/",
         },
-        { name: "Amnesi", image: "/images/lineup/amnesi.jpg" },
-        { name: "KP", image: "/images/djs/kp.jpg" },
+        { name: "Amnesi", image: "/images/lineup/amnesi.jpg", instagram: "https://www.instagram.com/amnesi_no/" },
+        { name: "KP", image: "/images/djs/kp.jpg", instagram: "https://www.instagram.com/solvevalderhaug/" },
       ],
     },
   ],

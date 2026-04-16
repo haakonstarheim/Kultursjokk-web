@@ -108,24 +108,34 @@ export default function BilletterPage() {
                     rendres <Image />, ellers en svart plassholder-boks.
                     Alle bilder legges i gråskala for plakataktig uttrykk. */}
                 <div className="mt-10 grid grid-cols-2 gap-4 md:gap-6">
-                  {night.lineup.map((dj) => (
-                    <div key={dj.name} className="flex flex-col">
-                      <div className="relative aspect-square w-full overflow-hidden bg-ink-100 border border-ink-300">
-                        {dj.image && (
-                          <Image
-                            src={dj.image}
-                            alt={`Portrett — ${dj.name}`}
-                            fill
-                            className="object-cover object-center grayscale"
-                            sizes="(min-width: 768px) 20vw, 45vw"
-                          />
-                        )}
-                      </div>
-                      <p className="mt-3 font-display text-lg md:text-xl uppercase text-ink-900 leading-tight">
-                        {dj.name}
-                      </p>
-                    </div>
-                  ))}
+                  {night.lineup.map((dj) => {
+                    const Wrapper = dj.instagram
+                      ? ({ children, className }: { children: React.ReactNode; className?: string }) => (
+                          <a href={dj.instagram} target="_blank" rel="noopener noreferrer" className={`${className} group`}>{children}</a>
+                        )
+                      : ({ children, className }: { children: React.ReactNode; className?: string }) => (
+                          <div className={className}>{children}</div>
+                        );
+
+                    return (
+                      <Wrapper key={dj.name} className="flex flex-col">
+                        <div className="relative aspect-square w-full overflow-hidden bg-ink-100 border border-ink-300 transition-opacity duration-300 group-hover:opacity-80">
+                          {dj.image && (
+                            <Image
+                              src={dj.image}
+                              alt={`Portrett — ${dj.name}`}
+                              fill
+                              className="object-cover object-center grayscale"
+                              sizes="(min-width: 768px) 20vw, 45vw"
+                            />
+                          )}
+                        </div>
+                        <p className="mt-3 font-display text-lg md:text-xl uppercase text-ink-900 leading-tight">
+                          {dj.name}
+                        </p>
+                      </Wrapper>
+                    );
+                  })}
                 </div>
               </div>
             ))}
