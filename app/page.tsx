@@ -117,12 +117,14 @@ export default function LandingPage() {
             <MetaItem label="Sjanger" value={KORSA.genres} />
           </div>
 
-          <Link
-            href="/arrangementer"
+          <a
+            href={KORSA.ticketUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="group inline-flex items-center justify-center border border-ink-900 px-8 py-4 font-mono text-[11px] tracking-meta uppercase text-ink-900 transition-colors duration-300 ease-brutal hover:bg-ink-900 hover:text-ink-0 md:min-w-[220px]"
           >
             Kjøp billett
-          </Link>
+          </a>
         </footer>
       </div>
     </div>
