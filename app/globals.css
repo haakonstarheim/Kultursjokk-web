@@ -1,0 +1,55 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Globale stiler for Kultursjokk
+ * ==============================
+ *
+ * Alt her skal være minimalt. Designsystemet lever i
+ * tailwind.config.ts, og komponentene bruker utility classes.
+ * Denne filen inneholder kun de tingene som må settes på rot-
+ * nivå: bakgrunnsfarge, fontrendering, scroll-oppførsel, osv.
+ */
+
+:root {
+  /* CSS custom properties gjør det mulig å referere verdier fra
+     JS (f.eks. i inline-stiler) uten å hardkode dem. */
+  --background: #000000;
+  --foreground: #A0A0A0; /* dimmet grå — aldri hvit */
+}
+
+html {
+  /* Smooth scroll brukes sparsomt, f.eks. for anchor-lenker */
+  scroll-behavior: smooth;
+  /* Unngår "flash" av hvit bakgrunn under lasting */
+  background: var(--background);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  /* Bedre fontrendering på macOS og iOS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Forhindrer horisontal scroll pga store display-fonter */
+  overflow-x: hidden;
+}
+
+/* Seleksjonsfarge: omvendt — svart tekst på dimmet grå bakgrunn */
+::selection {
+  background: #A0A0A0;
+  color: #000000;
+}
+
+/* Skjuler scrollbar visuelt, men beholder funksjonalitet */
+::-webkit-scrollbar {
+  width: 8px;
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #181818;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #202020;
+}
