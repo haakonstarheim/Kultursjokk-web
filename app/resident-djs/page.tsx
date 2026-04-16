@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/ui/site-header";
 import { SiteFooter } from "@/components/ui/site-footer";
+import { FadeIn } from "@/components/ui/fade-in";
 import { RESIDENTS, type Resident } from "@/lib/djs";
 
 /**
@@ -48,7 +49,9 @@ export default function ResidentDjsPage() {
         {/* ── 02 · LISTE ─────────────────────────────────── */}
         <section className="border-t border-ink-300">
           {RESIDENTS.map((dj, i) => (
-            <ResidentRow key={dj.slug} dj={dj} index={i} />
+            <FadeIn key={dj.slug} delay={i * 100}>
+              <ResidentRow dj={dj} index={i} />
+            </FadeIn>
           ))}
         </section>
       </main>
@@ -84,14 +87,14 @@ function ResidentRow({ dj, index }: { dj: Resident; index: number }) {
           href={dj.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className="relative aspect-square md:aspect-auto md:min-h-[560px] bg-ink-100 border-ink-300 md:border-r group"
+          className="relative aspect-square md:aspect-auto md:min-h-[560px] bg-ink-100 border-ink-300 md:border-r group overflow-hidden"
         >
           {dj.image && (
             <Image
               src={dj.image}
               alt={`Portrett — ${dj.name}`}
               fill
-              className="object-cover object-center grayscale transition-opacity duration-300 group-hover:opacity-80"
+              className="object-cover object-center grayscale transition-all duration-500 ease-brutal group-hover:grayscale-0 group-hover:scale-105"
               sizes="(min-width: 768px) 50vw, 100vw"
             />
           )}

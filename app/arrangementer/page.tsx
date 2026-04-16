@@ -2,6 +2,8 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { SiteHeader } from "@/components/ui/site-header";
 import { SiteFooter } from "@/components/ui/site-footer";
+import { FadeIn } from "@/components/ui/fade-in";
+import { ParallaxHero } from "@/components/ui/parallax-hero";
 import { KORSA } from "@/lib/events";
 
 /**
@@ -37,15 +39,17 @@ export default function BilletterPage() {
       <main className="min-h-screen">
         {/* ── 01 · HERO ─────────────────────────────────── */}
         <section className="relative h-[70vh] min-h-[500px] w-full overflow-hidden">
-          <Image
-            src={KORSA.heroImage}
-            alt="Korsatunnelen — silhuett med armer i været"
-            fill
-            priority
-            quality={85}
-            className="object-cover object-center grayscale"
-            sizes="100vw"
-          />
+          <ParallaxHero className="absolute inset-0 -top-[15%] h-[130%]">
+            <Image
+              src={KORSA.heroImage}
+              alt="Korsatunnelen — silhuett med armer i været"
+              fill
+              priority
+              quality={85}
+              className="object-cover object-center grayscale"
+              sizes="100vw"
+            />
+          </ParallaxHero>
           {/* Overlay for lesbarhet */}
           <div
             aria-hidden
@@ -66,24 +70,27 @@ export default function BilletterPage() {
         </section>
 
         {/* ── 02 · KORT BESKRIVELSE ─────────────────────── */}
-        <section className="px-6 md:px-16 py-24 md:py-32 max-w-5xl">
-          <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600">
-            01 · Om arrangementet
-          </p>
-          <p className="mt-8 font-display text-[clamp(2rem,5vw,4rem)] leading-[1.1] uppercase text-ink-900">
-            Rave i Korsatunnelen.
-            <br />
-            To netter. To sjangre.
-            <br />
-            KORSA.
-          </p>
-        </section>
+        <FadeIn>
+          <section className="px-6 md:px-16 py-24 md:py-32 max-w-5xl">
+            <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600">
+              01 · Om arrangementet
+            </p>
+            <p className="mt-8 font-display text-[clamp(2rem,5vw,4rem)] leading-[1.1] uppercase text-ink-900">
+              Rave i Korsatunnelen.
+              <br />
+              To netter. To sjangre.
+              <br />
+              KORSA.
+            </p>
+          </section>
+        </FadeIn>
 
         {/* ── 03 · TO-NETTERS SPLITT ────────────────────── */}
-        <section className="px-6 md:px-16 pb-24 md:pb-32">
-          <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600 mb-10">
-            02 · Program
-          </p>
+        <FadeIn>
+          <section className="px-6 md:px-16 pb-24 md:pb-32">
+            <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600 mb-10">
+              02 · Program
+            </p>
           <div className="grid grid-cols-1 md:grid-cols-2 border-t border-ink-300">
             {KORSA.nights.map((night, i) => (
               <div
@@ -119,13 +126,13 @@ export default function BilletterPage() {
 
                     return (
                       <Wrapper key={dj.name} className="flex flex-col">
-                        <div className="relative aspect-square w-full overflow-hidden bg-ink-100 border border-ink-300 transition-opacity duration-300 group-hover:opacity-80">
+                        <div className="relative aspect-square w-full overflow-hidden bg-ink-100 border border-ink-300">
                           {dj.image && (
                             <Image
                               src={dj.image}
                               alt={`Portrett — ${dj.name}`}
                               fill
-                              className="object-cover object-center grayscale"
+                              className="object-cover object-center grayscale transition-all duration-500 ease-brutal group-hover:grayscale-0 group-hover:scale-105"
                               sizes="(min-width: 768px) 20vw, 45vw"
                             />
                           )}
@@ -140,40 +147,45 @@ export default function BilletterPage() {
               </div>
             ))}
           </div>
-        </section>
+          </section>
+        </FadeIn>
 
         {/* ── 04 · PRAKTISK INFO ─────────────────────────── */}
-        <section className="px-6 md:px-16 pb-24 md:pb-32">
-          <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600 mb-10">
-            03 · Praktisk
-          </p>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 border-t border-ink-300 pt-10 font-mono text-[10px] md:text-[11px] tracking-meta uppercase">
-            <InfoItem label="Dører" value={KORSA.doors} />
-            <InfoItem label="Alder" value={KORSA.age} />
-            <InfoItem label="Sjanger" value={KORSA.genres} />
-            <InfoItem label="Lokasjon" value={KORSA.venue} />
-          </div>
-        </section>
+        <FadeIn>
+          <section className="px-6 md:px-16 pb-24 md:pb-32">
+            <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600 mb-10">
+              03 · Praktisk
+            </p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-10 border-t border-ink-300 pt-10 font-mono text-[10px] md:text-[11px] tracking-meta uppercase">
+              <InfoItem label="Dører" value={KORSA.doors} />
+              <InfoItem label="Alder" value={KORSA.age} />
+              <InfoItem label="Sjanger" value={KORSA.genres} />
+              <InfoItem label="Lokasjon" value={KORSA.venue} />
+            </div>
+          </section>
+        </FadeIn>
 
         {/* ── 05 · CTA ───────────────────────────────────── */}
-        <section className="px-6 md:px-16 pb-32 md:pb-40">
-          <div className="border-t border-ink-300 pt-16 md:pt-24 flex flex-col items-start gap-10">
-            <p className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] uppercase text-ink-900 max-w-3xl">
-              Billetter selges via Billetto.
-            </p>
-            <a
-              href={KORSA.ticketUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center justify-center border border-ink-900 px-12 py-6 font-mono text-[11px] md:text-[12px] tracking-meta uppercase text-ink-900 transition-colors duration-300 ease-brutal hover:bg-ink-900 hover:text-ink-0 min-w-[260px]"
-            >
-              Kjøp billett
-            </a>
-            <p className="font-mono text-[10px] tracking-meta uppercase text-ink-600">
-              Lenken åpner billetto.no i ny fane
-            </p>
-          </div>
-        </section>
+        <FadeIn>
+          <section className="px-6 md:px-16 pb-32 md:pb-40">
+            <div className="border-t border-ink-300 pt-16 md:pt-24 flex flex-col items-start gap-10">
+              <p className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.1] uppercase text-ink-900 max-w-3xl">
+                Billetter selges via Billetto.
+              </p>
+              <a
+                href={KORSA.ticketUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center border border-ink-900 px-12 py-6 font-mono text-[11px] md:text-[12px] tracking-meta uppercase text-ink-900 transition-colors duration-300 ease-brutal hover:bg-ink-900 hover:text-ink-0 min-w-[260px]"
+              >
+                Kjøp billett
+              </a>
+              <p className="font-mono text-[10px] tracking-meta uppercase text-ink-600">
+                Lenken åpner billetto.no i ny fane
+              </p>
+            </div>
+          </section>
+        </FadeIn>
       </main>
 
       <SiteFooter />
