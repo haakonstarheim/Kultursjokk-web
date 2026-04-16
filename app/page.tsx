@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { KORSA } from "@/lib/events";
+import { Countdown } from "@/components/ui/countdown";
 
 /**
  * Landing page — forside
@@ -111,7 +112,8 @@ export default function LandingPage() {
 
         {/* Footer — arrangementsmeta + CTA */}
         <footer className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between border-t border-ink-400 pt-6">
-          <div className="grid grid-cols-3 gap-4 md:gap-10 font-mono text-[10px] tracking-meta uppercase">
+          <div className="grid grid-cols-4 gap-4 md:gap-10 font-mono text-[10px] tracking-meta uppercase">
+            <Countdown targetDate="2026-05-01T22:00:00+02:00" />
             <MetaItem label="Dato" value={KORSA.dateRange} />
             <MetaItem label="Dører" value={KORSA.doors} />
             <MetaItem label="Sjanger" value={KORSA.genres} />
