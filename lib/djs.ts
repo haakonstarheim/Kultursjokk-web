@@ -49,6 +49,6 @@ export const RESIDENTS: Resident[] = [
     genres: "Bredt — alt med groove og bass",
     bio: "Baggy liker låter som lugger og basslines som bumper. Ingen sjanger er utelukket, men danseband skal man se langt etter.",
     image: "/images/djs/baggy-jeans.jpg",
-    // ingen Instagram ennå
+    instagram: "https://www.instagram.com/havardskjegstad/",
   },
 ];
