@@ -78,7 +78,7 @@ export const KORSA: Event = {
       lineup: [
         { name: "Betong", image: "/images/lineup/betong.jpg", instagram: "https://www.instagram.com/betong__/" },
         {
-          name: "Bick Dick Bandido",
+          name: "Big Dick Bandido",
           image: "/images/lineup/bick-dick-bandido.jpg",
           instagram: "https://www.instagram.com/bigdickbandido/",
         },
