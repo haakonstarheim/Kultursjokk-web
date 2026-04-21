@@ -1,24 +1,27 @@
-import { Anton, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
 
 /**
  * Sentral font-import.
  * ====================
  *
- * Vi bruker `next/font/google` som automatisk self-hoster fontene
- * under bygg — det gir raskere lasting og bedre personvern (ingen
- * kall til Google ved sidebesøk).
+ * Display-fonten (Airstrike) er lokal (.ttf), resten bruker
+ * `next/font/google` som self-hoster under bygg.
  *
  * Variabler eksponeres som CSS custom properties og kobles til
  * Tailwind via `fontFamily`-seksjonen i `tailwind.config.ts`.
  */
 
-// Display-font for store overskrifter (KORSA, seksjonstitler)
-export const anton = Anton({
-  weight: "400",
-  subsets: ["latin"],
-  variable: "--font-anton",
+// Display-font for titler, DJ-navn og logo (Airstrike)
+export const airstrike = localFont({
+  src: "../public/fonts/airstrike.ttf",
+  variable: "--font-display",
   display: "swap",
 });
+
+// Alias for bakoverkompatibilitet — alle steder som bruker `anton`
+// peker nå til Airstrike uten at vi trenger endre importene overalt.
+export const anton = airstrike;
 
 // Brødtekst og UI-tekst
 export const inter = Inter({

@@ -40,8 +40,8 @@ const config: Config = {
         },
       },
       fontFamily: {
-        // Display-font: Anton. Brukes for store overskrifter.
-        display: ["var(--font-anton)", "sans-serif"],
+        // Display-font: Airstrike. Brukes for titler, DJ-navn og logo.
+        display: ["var(--font-display)", "sans-serif"],
         // Brødtekst: Inter. Brukes for alt av lengre tekst.
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
         // Monospace: JetBrains Mono. Brukes for datoer, metadata, labels.
