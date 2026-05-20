@@ -54,7 +54,10 @@ export const KORSA: Event = {
   age: "20+",
   venue: "Korsatunnelen, Ålesund",
   genres: "DnB · Techno",
-  heroImage: "/images/korsa-hero.jpg",
+  // Oppdatert 20.05.2026: peker nå på den nye KORSA 2026-plakaten
+  // som vises på /arrangementer (historikk-seksjonen).
+  // Forsiden bruker fortsatt /images/korsa-hero.jpg som bakgrunn.
+  heroImage: "/images/korsa-2026.jpg",
   ticketUrl:
     "https://billetto.no/e/korsa-billetter-1877450?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1",
   nights: [
