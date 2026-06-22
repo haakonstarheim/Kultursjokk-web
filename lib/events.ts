@@ -83,8 +83,9 @@ export const KONKRET: Event = {
   venue: "Secret location",
   // Plakatfil (Poster_09_Facebook_v3.png) kopieres inn som denne.
   heroImage: "/images/konkret-kultursjokk-2026.png",
-  // TODO (Håkon): lim inn den ekte Billetto-lenken her når billettsalget er live.
-  ticketUrl: "",
+  // Billetto — billettsalg live.
+  ticketUrl:
+    "https://billetto.no/e/konkret-x-kultursjokk-billetter-1958624?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1",
   nights: [
     {
       label: "Natt 01",
