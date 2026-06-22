@@ -34,16 +34,16 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kultursjokk",
     description:
-      "KORSA — To netter rave i Korsatunnelen, Ålesund. 1. mai: Drum & Bass. 2. mai: Techno.",
+      "KONKRET × KULTURSJOKK — Forest All-Nighter. 25.07.2026, hemmelig lokasjon. Anders Hajem (BCR), Betong, Nastex, Valder.",
     locale: "nb_NO",
     type: "website",
     siteName: "Kultursjokk",
     images: [
       {
-        url: "/images/korsa-hero.jpg",
-        width: 1200,
-        height: 630,
-        alt: "KORSA — Rave i Korsatunnelen, Ålesund",
+        url: "/images/konkret-kultursjokk-2026.png",
+        width: 1080,
+        height: 1350,
+        alt: "KONKRET × KULTURSJOKK — Forest All-Nighter, 25.07.2026",
       },
     ],
   },
@@ -51,8 +51,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kultursjokk",
     description:
-      "KORSA — To netter rave i Korsatunnelen, Ålesund. 1. mai: Drum & Bass. 2. mai: Techno.",
-    images: ["/images/korsa-hero.jpg"],
+      "KONKRET × KULTURSJOKK — Forest All-Nighter. 25.07.2026, hemmelig lokasjon. Anders Hajem (BCR), Betong, Nastex, Valder.",
+    images: ["/images/konkret-kultursjokk-2026.png"],
   },
 };
 
