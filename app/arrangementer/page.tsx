@@ -9,6 +9,7 @@ import {
   getUpcomingEvent,
   getPastEvents,
   hasTickets,
+  acceptsVolunteers,
   type Event,
 } from "@/lib/events";
 
@@ -187,6 +188,23 @@ function UpcomingSections({ event }: { event: Event }) {
               </>
             )}
           </div>
+
+          {/* Frivillig-CTA — vises kun når arrangementet tar imot
+              frivillige (Event.volunteerEmail er satt). Lenker til
+              det arrangements-spesifikke frivilligskjemaet. */}
+          {acceptsVolunteers(event) && (
+            <div className="mt-12 border-t border-ink-300 pt-12 flex flex-col items-start gap-4">
+              <a
+                href={`/arrangementer/${event.slug}/frivillig`}
+                className="inline-block border border-ink-500 px-9 py-4 font-mono text-[12px] tracking-meta uppercase text-ink-800 transition-colors hover:border-ink-900 hover:text-ink-900"
+              >
+                Bli frivillig
+              </a>
+              <p className="font-mono text-[10px] tracking-meta uppercase text-ink-600">
+                Vil du jobbe på arrangementet? Meld deg som frivillig — velg vaktene du kan ta.
+              </p>
+            </div>
+          )}
         </section>
       </FadeIn>
     </>

@@ -41,6 +41,44 @@ export type EventNight = {
   lineup: Dj[];
 };
 
+/**
+ * En valgbar frivilligvakt. Vises som avkryssingsboks i
+ * frivilligskjemaet, og `title` + `window` er det som havner i
+ * oppsummerings-e-posten når noen melder seg på vakten.
+ */
+export type VolunteerShift = {
+  value: string; // teknisk verdi som lagres/sendes, f.eks. "rigging"
+  title: string; // vist navn, f.eks. "Rigging"
+  window: string; // tidsrom, f.eks. "Fredag 24.07 · dagtid"
+  description: string; // kort forklaring av hva vakten innebærer
+};
+
+/**
+ * Standard vaktoppsett. Brukes når et arrangement ikke definerer
+ * sine egne `volunteerShifts`. Tre klassiske blokker: bygge opp,
+ * drifte under, rigge ned.
+ */
+export const DEFAULT_VOLUNTEER_SHIFTS: VolunteerShift[] = [
+  {
+    value: "rigging",
+    title: "Rigging",
+    window: "Før dørene åpner",
+    description: "Bygge scene, lys, bar og inngang før publikum slipper inn.",
+  },
+  {
+    value: "under-arrangement",
+    title: "Under arrangement",
+    window: "Mens arrangementet pågår",
+    description: "Bar, garderobe, inngang eller vakthold gjennom kvelden.",
+  },
+  {
+    value: "nedrigg",
+    title: "Nedrigg",
+    window: "Etter siste sett",
+    description: "Rydde, pakke ned utstyr og gjøre lokasjonen ren igjen.",
+  },
+];
+
 export type Event = {
   slug: string;
   status: "upcoming" | "past"; // styrer om eventet vises som aktivt eller historikk
@@ -61,6 +99,15 @@ export type Event = {
   // sidene "Billetter slippes snart" i stedet for en aktiv knapp.
   ticketUrl?: string;
   nights: EventNight[];
+  // ── Frivillig ─────────────────────────────────────────────
+  // Mottaker for frivilligpåmeldinger til DETTE arrangementet.
+  // Settes pr. event slik at hvert arrangement kan sende til sin
+  // egen ansvarlige. Mangler den, er frivilligskjemaet stengt for
+  // arrangementet (siden returnerer 404).
+  volunteerEmail?: string; // f.eks. "michaelfurnes@gmail.com"
+  // Valgbare vakter i skjemaet. Utelates den, brukes
+  // DEFAULT_VOLUNTEER_SHIFTS.
+  volunteerShifts?: VolunteerShift[];
 };
 
 /**
@@ -86,6 +133,30 @@ export const KONKRET: Event = {
   // Billetto — billettsalg live.
   ticketUrl:
     "https://billetto.no/e/konkret-x-kultursjokk-billetter-1958624?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=1",
+  // Frivilligpåmeldinger for dette arrangementet går til Michael.
+  volunteerEmail: "michaelfurnes@gmail.com",
+  // Vakter tilpasset en all-nighter i skogen (bruker standardteksten,
+  // men med tidsrom som passer datoen). Kan finjusteres pr. event.
+  volunteerShifts: [
+    {
+      value: "rigging",
+      title: "Rigging",
+      window: "Fredag 24.07 → lørdag ettermiddag",
+      description: "Frakte og bygge scene, lys, bar og inngang på lokasjonen.",
+    },
+    {
+      value: "under-arrangement",
+      title: "Under arrangement",
+      window: "Lørdag 25.07 · 22:00 → 07:00",
+      description: "Bar, garderobe, inngang eller vakthold gjennom natten.",
+    },
+    {
+      value: "nedrigg",
+      title: "Nedrigg",
+      window: "Søndag 26.07 · morgen",
+      description: "Rydde, pakke ned utstyr og gjøre skogen ren igjen.",
+    },
+  ],
   nights: [
     {
       label: "Natt 01",
@@ -185,4 +256,29 @@ export function getPastEvents(): Event[] {
  */
 export function hasTickets(event: Event): boolean {
   return typeof event.ticketUrl === "string" && event.ticketUrl.trim().length > 0;
+}
+
+/**
+ * Slår opp et arrangement på slug. Returnerer `undefined` hvis
+ * ingen match — sidene bruker dette til å returnere 404.
+ */
+export function getEventBySlug(slug: string): Event | undefined {
+  return events.find((e) => e.slug === slug);
+}
+
+/**
+ * Hjelper: tar arrangementet imot frivillige? Sant kun når en
+ * (ikke-tom) mottaker-e-post er satt. Styrer om frivilligskjemaet
+ * og "Bli frivillig"-lenken vises.
+ */
+export function acceptsVolunteers(event: Event): boolean {
+  return typeof event.volunteerEmail === "string" && event.volunteerEmail.trim().length > 0;
+}
+
+/**
+ * Returnerer vaktene som skal vises i skjemaet for et arrangement:
+ * eventets egne `volunteerShifts`, eller standardsettet.
+ */
+export function getVolunteerShifts(event: Event): VolunteerShift[] {
+  return event.volunteerShifts ?? DEFAULT_VOLUNTEER_SHIFTS;
 }
