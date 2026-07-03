@@ -222,7 +222,7 @@ export function VolunteerForm({
         </div>
         <div className="mt-6">
           <label htmlFor="notes" className={labelCls}>
-            Noe vaktansvarlig bør vite? (foretrukken rolle, tilgjengelighet o.l.)
+            Skriv litt om deg og dine erfaringer
           </label>
           <textarea id="notes" name="notes" rows={3}
             value={form.notes} onChange={update("notes")} className={inputCls} />
