@@ -69,7 +69,7 @@ export const DEFAULT_VOLUNTEER_SHIFTS: VolunteerShift[] = [
     value: "under-arrangement",
     title: "Under arrangement",
     window: "Mens arrangementet pågår",
-    description: "Bar, garderobe, inngang eller vakthold gjennom kvelden.",
+    description: "Støtte på stedet: garderobe, inngang eller vakthold gjennom kvelden.",
   },
   {
     value: "nedrigg",
@@ -141,20 +141,20 @@ export const KONKRET: Event = {
     {
       value: "rigging",
       title: "Rigging",
-      window: "Fredag 24.07 → lørdag ettermiddag",
-      description: "Frakte og bygge scene, lys, bar og inngang på lokasjonen.",
+      window: "Før arrangementet · 6-timers vakt",
+      description: "Oppbygging av området før dørene åpner — konstruksjoner, dekor og teknisk oppsett.",
     },
     {
       value: "under-arrangement",
       title: "Under arrangement",
-      window: "Lørdag 25.07 · 22:00 → 07:00",
-      description: "Bar, garderobe, inngang eller vakthold gjennom natten.",
+      window: "25.07.2026 · 3-timers vakt",
+      description: "Støtte på stedet gjennom hele natten på Forest All-Nighter.",
     },
     {
       value: "nedrigg",
       title: "Nedrigg",
-      window: "Søndag 26.07 · morgen",
-      description: "Rydde, pakke ned utstyr og gjøre skogen ren igjen.",
+      window: "Etter arrangementet · 4-timers vakt",
+      description: "Nedrigg og opprydding av området etter at arrangementet er over.",
     },
   ],
   nights: [
