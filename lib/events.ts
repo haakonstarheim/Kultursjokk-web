@@ -94,7 +94,19 @@ export type Event = {
   age: string; // "18+"
   venue: string; // "Secret location"
   genres?: string; // "DnB · Techno" — valgfri samlevisning
+  // Prisvisning. Fri tekst slik at vi kan skrive
+  // "Student 150,- · Ordinær 250,-" eller "Gratis". Utelates den,
+  // vises ingen prisrad i detaljene.
+  price?: string;
   heroImage: string; // sti under /public
+  // Valgfri teaservideo (sti under /public). Settes den, vises en
+  // loopende, lydløs videoseksjon på /arrangementer. Plakaten
+  // (heroImage) brukes som stillbilde fram til videoen spiller.
+  teaserVideo?: string;
+  // Stillbilde som vises mens teaservideoen laster (eller hvis
+  // nettleseren ikke spiller av automatisk). Utelates den, brukes
+  // plakaten.
+  teaserPoster?: string;
   // Billettlenke. Valgfri — mangler den (eller er den tom) viser
   // sidene "Billetter slippes snart" i stedet for en aktiv knapp.
   ticketUrl?: string;
@@ -111,12 +123,58 @@ export type Event = {
 };
 
 /**
- * KONKRET × KULTURSJOKK — kommende arrangement (25.07.2026).
- * En skog-rave / all-nighter på hemmelig lokasjon.
+ * HALLOWEEN RAVE — kommende arrangement (31.10.2026).
+ * Samarbeid med Samfunnet på Campus Ålesund.
+ */
+export const HALLOWEEN: Event = {
+  slug: "halloween-rave",
+  status: "upcoming",
+  title: "HALLOWEEN RAVE",
+  subtitle: "Samfunnet · Campus Ålesund",
+  shortDescription:
+    "Kultursjokk tar over Samfunnet på Campus Ålesund natt til 1. november. Fire timer rave, kostyme sterkt anbefalt.",
+  description:
+    "Halloween Rave på Samfunnet, Campus Ålesund. Dørene åpner 22:00, siste sett 02:00.",
+  dateRange: "31.10.2026",
+  // Norge er på vintertid (UTC+1) fra 25. oktober 2026.
+  startsAt: "2026-10-31T22:00:00+01:00",
+  doors: "22:00 → 02:00",
+  age: "18+", // gyldig legitimasjon kreves
+  venue: "Samfunnet, Campus Ålesund",
+  price: "Student 150,- · Ordinær 250,-",
+  heroImage: "/images/halloween-rave-2026.png",
+  teaserVideo: "/video/halloween-rave-teaser.mp4",
+  teaserPoster: "/images/halloween-rave-teaser-poster.jpg",
+  // Billetto — billettsalg live.
+  ticketUrl:
+    "https://billetto.no/e/kultursjokk-x-samfunnet-billetter-2024538?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=2",
+  nights: [
+    {
+      label: "Natt 01",
+      date: "31.10.2026",
+      day: "Lørdag",
+      // Foreløpig lineup. "TBA" står som plassholder for den siste
+      // bookingen — bytt den ut med artistnavnet når det er klart.
+      lineup: [
+        { name: "Dvask", image: "/images/djs/dvask.jpg", instagram: "https://www.instagram.com/hakonbreivik/" },
+        { name: "Betong", image: "/images/lineup/betong.jpg", instagram: "https://www.instagram.com/betong__/" },
+        { name: "Burge", image: "/images/djs/burge.jpg", instagram: "https://www.instagram.com/djburge_/" },
+        { name: "TBA" },
+      ],
+    },
+  ],
+};
+
+/**
+ * KONKRET × KULTURSJOKK — avsluttet arrangement (25.07.2026).
+ * En skog-rave / all-nighter på hemmelig lokasjon. Beholdes som
+ * historikk på /arrangementer.
  */
 export const KONKRET: Event = {
   slug: "konkret-kultursjokk",
-  status: "upcoming",
+  // Avholdt 25.07.2026 — flyttet til historikk da Halloween Rave
+  // ble annonsert som neste arrangement.
+  status: "past",
   title: "KONKRET × KULTURSJOKK",
   subtitle: "Forest All-Nighter",
   shortDescription:
@@ -230,7 +288,7 @@ export const KORSA: Event = {
  * Full liste over alle arrangementer. Rekkefølgen her er "nyeste
  * først" — kommende events øverst, deretter historikk.
  */
-export const events: Event[] = [KONKRET, KORSA];
+export const events: Event[] = [HALLOWEEN, KONKRET, KORSA];
 
 /**
  * Henter det kommende/aktive arrangementet (det første med

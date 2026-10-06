@@ -31,7 +31,7 @@ import {
 export const metadata: Metadata = {
   title: "Arrangementer — Kultursjokk",
   description:
-    "Kommende og tidligere arrangementer i regi av Kultursjokk. Neste arrangement: KONKRET × KULTURSJOKK — Forest All-Nighter, 25.07.2026.",
+    "Kommende og tidligere arrangementer i regi av Kultursjokk. Neste arrangement: Halloween Rave på Samfunnet, Campus Ålesund — 31.10.2026.",
 };
 
 export default function ArrangementerPage() {
@@ -127,6 +127,33 @@ function UpcomingSections({ event }: { event: Event }) {
         </section>
       </FadeIn>
 
+      {/* ── 02b · TEASER (valgfri video) ─────────────────────
+          Loopende, lydløs video. `playsInline` er nødvendig for at
+          iOS skal spille av uten å gå i fullskjerm, og plakaten
+          brukes som `poster` fram til første bilde er klart. */}
+      {event.teaserVideo && (
+        <FadeIn>
+          <section className="px-6 md:px-16 pb-24 md:pb-32">
+            <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600 mb-10">
+              01b · Teaser
+            </p>
+            <div className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden border border-ink-300 bg-ink-100">
+              <video
+                src={event.teaserVideo}
+                poster={event.teaserPoster ?? event.heroImage}
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                aria-label={`Teaser — ${event.title}`}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </section>
+        </FadeIn>
+      )}
+
       {/* ── 03 · LINEUP ─────────────────────────────────────── */}
       <FadeIn>
         <section className="px-6 md:px-16 pb-24 md:pb-32">
@@ -148,6 +175,8 @@ function UpcomingSections({ event }: { event: Event }) {
             <InfoItem label="Dører" value={event.doors} />
             <InfoItem label="Alder" value={event.age} />
             <InfoItem label="Lokasjon" value={event.venue} />
+            {/* Pris vises kun når arrangementet har satt den. */}
+            {event.price && <InfoItem label="Pris" value={event.price} />}
           </div>
 
           <div className="mt-16 border-t border-ink-300 pt-12 flex flex-col items-start gap-5">
@@ -330,7 +359,13 @@ function NightsGrid({ event }: { event: Event }) {
             {night.date}
           </p>
 
-          {night.lineup.every((dj) => dj.image) ? (
+          {night.lineup.length === 0 ? (
+            /* Lineup ikke annonsert ennå → tydelig plassholder
+               i stedet for et tomt rutenett. */
+            <p className="mt-10 border-t border-ink-300 pt-10 font-display text-[clamp(1.75rem,5vw,3rem)] leading-[1.05] uppercase text-ink-700">
+              Lineup annonseres snart
+            </p>
+          ) : night.lineup.every((dj) => dj.image) ? (
             /* Alle har bilde → bilde-grid (gråskala, fargelegges ved hover). */
             <div
               className={`mt-10 grid gap-4 md:gap-6 ${
