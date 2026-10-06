@@ -285,6 +285,24 @@ export const KORSA: Event = {
 };
 
 /**
+ * Teaser for neste arrangement som ennå ikke er annonsert.
+ * Vises som egen blokk nederst på /arrangementer, mellom det
+ * kommende arrangementet og historikken. Sett til `null` for å
+ * skjule blokken helt.
+ */
+export type EventTeaser = {
+  title: string;      // "KORSA 2027"
+  image: string;      // sti under /public
+  note: string;       // "Annonseres snart"
+};
+
+export const NESTE_TEASER: EventTeaser | null = {
+  title: "KORSA 2027",
+  image: "/images/korsa-2027-tba.jpg",
+  note: "Annonseres snart",
+};
+
+/**
  * Full liste over alle arrangementer. Rekkefølgen her er "nyeste
  * først" — kommende events øverst, deretter historikk.
  */

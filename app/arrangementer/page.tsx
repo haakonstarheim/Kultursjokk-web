@@ -10,6 +10,7 @@ import {
   getPastEvents,
   hasTickets,
   acceptsVolunteers,
+  NESTE_TEASER,
   type Event,
 } from "@/lib/events";
 
@@ -48,6 +49,9 @@ export default function ArrangementerPage() {
         ) : (
           <ComingSoonHero />
         )}
+
+        {/* ── NESTE (teaser) ────────────────────────────────── */}
+        {NESTE_TEASER && <NextTeaser />}
 
         {/* ── HISTORIKK ─────────────────────────────────────── */}
         {past.length > 0 && (
@@ -467,6 +471,40 @@ function ComingSoonHero() {
         </p>
       </div>
     </section>
+  );
+}
+
+/**
+ * Teaser for et arrangement som ikke er annonsert ennå.
+ * Bildet er allerede svart-hvitt og uskarpt — vi legger bare på
+ * tittel og en kort linje under.
+ */
+function NextTeaser() {
+  if (!NESTE_TEASER) return null;
+  return (
+    <FadeIn>
+      <section className="px-6 md:px-16 pt-24 md:pt-32">
+        <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600">
+          Neste
+        </p>
+        <div className="relative mt-8 aspect-[3/2] w-full overflow-hidden border border-ink-300 bg-ink-100">
+          <Image
+            src={NESTE_TEASER.image}
+            alt={`${NESTE_TEASER.title} — ${NESTE_TEASER.note}`}
+            fill
+            quality={85}
+            className="object-cover object-center"
+            sizes="(min-width: 768px) 80vw, 100vw"
+          />
+        </div>
+        <p className="mt-8 font-display text-[clamp(2rem,5vw,4rem)] leading-[1.1] uppercase text-ink-900">
+          {NESTE_TEASER.title}
+        </p>
+        <p className="mt-4 font-mono text-[11px] tracking-meta uppercase text-ink-600">
+          {NESTE_TEASER.note}
+        </p>
+      </section>
+    </FadeIn>
   );
 }
 
