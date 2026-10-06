@@ -84,7 +84,7 @@ export default function LandingPage() {
   // ingenting beskjæres — artistene er alltid synlige), CTA nederst.
   // Ingen gradient over bildet: plakaten vises rent som kunstverket.
   return (
-    <div className="flex h-[100dvh] w-full flex-col overflow-hidden bg-ink-0 px-6 py-8 md:px-16 md:py-12">
+    <div className="flex h-[100dvh] w-full flex-col overflow-hidden bg-ink-0 px-4 py-4 md:px-10 md:py-6">
       <SiteNav />
 
       {/* Skjult h1 for SEO/skjermlesere — plakaten viser tittelen
@@ -94,10 +94,11 @@ export default function LandingPage() {
         {event.subtitle ? ` — ${event.subtitle}` : ""}
       </h1>
 
-      {/* Plakat — fyller plassen mellom header og CTA. `object-contain`
-          + relativ wrapper sørger for at hele plakaten vises uansett
-          skjermformat. Plakaten beholdes i farge. */}
-      <div className="relative min-h-0 flex-1 py-6 md:py-8">
+      {/* Plakat — fyller all plassen mellom header og CTA.
+          `object-contain` + relativ wrapper sørger for at hele
+          plakaten vises uansett skjermformat. Luften rundt holdes
+          minimal slik at plakaten blir så stor som mulig. */}
+      <div className="relative min-h-0 flex-1 py-3 md:py-4">
         <Image
           src={event.heroImage}
           alt={`Plakat — ${event.title}${event.subtitle ? ` · ${event.subtitle}` : ""}`}
@@ -110,8 +111,8 @@ export default function LandingPage() {
       </div>
 
       {/* CTA-stripe nederst */}
-      <footer className="border-t border-ink-400 pt-6">
-        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+      <footer className="border-t border-ink-400 pt-4">
+        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
           <p className="font-mono text-[11px] md:text-[13px] tracking-meta uppercase text-ink-900">
             {event.dateRange} · {event.doors} · {event.venue}
           </p>
@@ -152,15 +153,15 @@ export default function LandingPage() {
  */
 function SiteNav() {
   return (
-    <header className="flex items-center justify-between">
+    <header className="flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
       <Link
         href="/"
-        className="font-display text-xl md:text-2xl uppercase tracking-wide text-ink-900 hover:text-ink-900 transition-colors"
+        className="font-display text-lg md:text-2xl uppercase tracking-wide text-ink-900 hover:text-ink-900 transition-colors"
       >
         Kultursjokk
       </Link>
 
-      <nav className="flex items-center gap-6 md:gap-10 font-mono text-[10px] md:text-[11px] tracking-meta uppercase">
+      <nav className="flex items-center gap-3 sm:gap-6 md:gap-10 font-mono text-[9px] sm:text-[10px] md:text-[11px] tracking-meta uppercase">
         <Link
           href="/resident-djs"
           className="text-ink-800 hover:text-ink-900 transition-colors"

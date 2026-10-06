@@ -82,20 +82,38 @@ function UpcomingSections({ event }: { event: Event }) {
 
   return (
     <>
-      {/* ── 01 · HERO (plakat) ──────────────────────────────────
-          Hele plakaten vises (object-contain) uten gradient, slik at
-          tittel, lineup og info er synlig — plakaten er kunstverket. */}
-      <section className="relative w-full bg-ink-0 px-6 md:px-16 pt-6 md:pt-10">
-        <div className="relative mx-auto aspect-[4/5] w-full max-w-2xl">
-          <Image
-            src={event.heroImage}
-            alt={`Plakat — ${event.title}${event.subtitle ? ` · ${event.subtitle}` : ""}`}
-            fill
-            priority
-            quality={90}
-            className="object-contain"
-            sizes="(min-width: 768px) 42rem, 100vw"
-          />
+      {/* ── 01 · HERO ───────────────────────────────────────────
+          Har arrangementet en teaservideo, ER den heroen — da slipper
+          vi å vise plakaten to ganger på samme side. Plakaten brukes
+          som stillbilde. Uten video vises plakaten i stedet.
+          Høyden styres av visningsvinduet (85svh) og bredden følger
+          plakatformatet 9:16, slik at motivet blir så stort som
+          mulig uten å måtte scrolles forbi. */}
+      <section className="relative w-full bg-ink-0 px-4 md:px-16 pt-4 md:pt-8">
+        <div className="relative mx-auto aspect-[9/16] w-full max-w-[calc(85svh*9/16)]">
+          {event.teaserVideo ? (
+            <video
+              src={event.teaserVideo}
+              poster={event.teaserPoster ?? event.heroImage}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-label={`Teaser — ${event.title}`}
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <Image
+              src={event.heroImage}
+              alt={`Plakat — ${event.title}${event.subtitle ? ` · ${event.subtitle}` : ""}`}
+              fill
+              priority
+              quality={90}
+              className="object-contain"
+              sizes="(min-width: 768px) 42rem, 100vw"
+            />
+          )}
         </div>
         {/* h1 skjult visuelt — plakaten viser tittelen — men beholdt
             for dokumentstruktur og skjermlesere. */}
@@ -126,33 +144,6 @@ function UpcomingSections({ event }: { event: Event }) {
           )}
         </section>
       </FadeIn>
-
-      {/* ── 02b · TEASER (valgfri video) ─────────────────────
-          Loopende, lydløs video. `playsInline` er nødvendig for at
-          iOS skal spille av uten å gå i fullskjerm, og plakaten
-          brukes som `poster` fram til første bilde er klart. */}
-      {event.teaserVideo && (
-        <FadeIn>
-          <section className="px-6 md:px-16 pb-24 md:pb-32">
-            <p className="font-mono text-[10px] md:text-[11px] tracking-eyebrow uppercase text-ink-600 mb-10">
-              01b · Teaser
-            </p>
-            <div className="relative mx-auto aspect-[9/16] w-full max-w-sm overflow-hidden border border-ink-300 bg-ink-100">
-              <video
-                src={event.teaserVideo}
-                poster={event.teaserPoster ?? event.heroImage}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                aria-label={`Teaser — ${event.title}`}
-                className="h-full w-full object-cover"
-              />
-            </div>
-          </section>
-        </FadeIn>
-      )}
 
       {/* ── 03 · LINEUP ─────────────────────────────────────── */}
       <FadeIn>
