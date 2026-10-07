@@ -119,14 +119,26 @@ export default function LandingPage() {
 
           <div className="flex flex-wrap items-center gap-4 md:gap-6">
             {ticketsLive ? (
-              <a
-                href={event.ticketUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block border border-ink-900 px-7 py-3 font-mono text-[11px] tracking-meta uppercase text-ink-900 transition-colors hover:bg-ink-900 hover:text-ink-0"
-              >
-                Kjøp billetter
-              </a>
+              <>
+                <a
+                  href={event.ticketUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block border border-ink-900 px-7 py-3 font-mono text-[11px] tracking-meta uppercase text-ink-900 transition-colors hover:bg-ink-900 hover:text-ink-0"
+                >
+                  Kjøp billetter
+                </a>
+                {event.studentTicketUrl && (
+                  <a
+                    href={event.studentTicketUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block border border-ink-900 px-7 py-3 font-mono text-[11px] tracking-meta uppercase text-ink-900 transition-colors hover:bg-ink-900 hover:text-ink-0"
+                  >
+                    Studentbillett
+                  </a>
+                )}
+              </>
             ) : (
               <span className="inline-block border border-ink-500 px-7 py-3 font-mono text-[11px] tracking-meta uppercase text-ink-600">
                 Billetter slippes snart

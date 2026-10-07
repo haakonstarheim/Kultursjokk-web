@@ -177,16 +177,29 @@ function UpcomingSections({ event }: { event: Event }) {
           <div className="mt-16 border-t border-ink-300 pt-12 flex flex-col items-start gap-5">
             {ticketsLive ? (
               <>
-                <a
-                  href={event.ticketUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block border border-ink-900 px-9 py-4 font-mono text-[12px] tracking-meta uppercase text-ink-900 transition-colors hover:bg-ink-900 hover:text-ink-0"
-                >
-                  Kjøp billetter
-                </a>
+                <div className="flex flex-wrap items-center gap-4">
+                  <a
+                    href={event.ticketUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block border border-ink-900 px-9 py-4 font-mono text-[12px] tracking-meta uppercase text-ink-900 transition-colors hover:bg-ink-900 hover:text-ink-0"
+                  >
+                    Kjøp billetter
+                  </a>
+                  {event.studentTicketUrl && (
+                    <a
+                      href={event.studentTicketUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block border border-ink-900 px-9 py-4 font-mono text-[12px] tracking-meta uppercase text-ink-900 transition-colors hover:bg-ink-900 hover:text-ink-0"
+                    >
+                      Studentbillett · Stello
+                    </a>
+                  )}
+                </div>
                 <p className="font-mono text-[10px] tracking-meta uppercase text-ink-600">
-                  Billettsalg via Billetto · Ved kjøp gjelder våre{" "}
+                  Billettsalg via Billetto
+                  {event.studentTicketUrl && " · Studentbilletter via Stello"} · Ved kjøp gjelder våre{" "}
                   <a href="/vilkar" className="text-ink-800 hover:text-ink-900 underline">
                     vilkår
                   </a>

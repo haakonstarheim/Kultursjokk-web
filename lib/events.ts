@@ -110,6 +110,10 @@ export type Event = {
   // Billettlenke. Valgfri — mangler den (eller er den tom) viser
   // sidene "Billetter slippes snart" i stedet for en aktiv knapp.
   ticketUrl?: string;
+  // Egen lenke for studentbilletter (f.eks. Stello). Valgfri —
+  // settes den, vises en ekstra knapp "Studentbillett" ved siden av
+  // den vanlige billettknappen.
+  studentTicketUrl?: string;
   nights: EventNight[];
   // ── Frivillig ─────────────────────────────────────────────
   // Mottaker for frivilligpåmeldinger til DETTE arrangementet.
@@ -148,6 +152,9 @@ export const HALLOWEEN: Event = {
   // Billetto — billettsalg live.
   ticketUrl:
     "https://billetto.no/e/kultursjokk-x-samfunnet-billetter-2024538?utm_source=organiser&utm_medium=share&utm_campaign=copy_link&utm_content=2",
+  // Stello — studentbilletter (selges via Samfunnet i Ålesund).
+  studentTicketUrl:
+    "https://stello.no/e/samfunnet-i-aalesund/kultursjokk-haloween-rave-paa-samfunnet",
   nights: [
     {
       label: "Natt 01",
