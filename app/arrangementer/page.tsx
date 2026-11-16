@@ -32,7 +32,7 @@ import {
 export const metadata: Metadata = {
   title: "Arrangementer — Kultursjokk",
   description:
-    "Kommende og tidligere arrangementer i regi av Kultursjokk. Neste arrangement: Halloween Rave på Samfunnet, Campus Ålesund — 31.10.2026.",
+    "Kommende og tidligere arrangementer i regi av Kultursjokk.",
 };
 
 export default function ArrangementerPage() {
