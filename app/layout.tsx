@@ -34,16 +34,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kultursjokk",
     description:
-      "KONKRET × KULTURSJOKK — Forest All-Nighter. 25.07.2026, hemmelig lokasjon. Anders Hajem (BCR), Betong, Nastex, Valder.",
+      "Kultursjokk er et eventkollektiv i Ålesund som skaper unike musikk- og kulturarrangementer i utradisjonelle lokasjoner.",
     locale: "nb_NO",
     type: "website",
     siteName: "Kultursjokk",
     images: [
       {
-        url: "/images/konkret-kultursjokk-2026.png",
-        width: 1080,
-        height: 1350,
-        alt: "KONKRET × KULTURSJOKK — Forest All-Nighter, 25.07.2026",
+        url: "/images/korsa-hero.jpg",
+        alt: "Kultursjokk — rave i Korsatunnelen, Ålesund",
       },
     ],
   },
@@ -51,8 +49,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Kultursjokk",
     description:
-      "KONKRET × KULTURSJOKK — Forest All-Nighter. 25.07.2026, hemmelig lokasjon. Anders Hajem (BCR), Betong, Nastex, Valder.",
-    images: ["/images/konkret-kultursjokk-2026.png"],
+      "Kultursjokk er et eventkollektiv i Ålesund som skaper unike musikk- og kulturarrangementer i utradisjonelle lokasjoner.",
+    images: ["/images/korsa-hero.jpg"],
   },
 };
 

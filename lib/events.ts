@@ -127,12 +127,14 @@ export type Event = {
 };
 
 /**
- * HALLOWEEN RAVE — kommende arrangement (31.10.2026).
- * Samarbeid med Samfunnet på Campus Ålesund.
+ * HALLOWEEN RAVE — avsluttet arrangement (31.10.2026).
+ * Samarbeid med Samfunnet på Campus Ålesund. Beholdes som
+ * historikk på /arrangementer.
  */
 export const HALLOWEEN: Event = {
   slug: "halloween-rave",
-  status: "upcoming",
+  // Avholdt 31.10.2026 — flyttet til historikk.
+  status: "past",
   title: "HALLOWEEN RAVE",
   subtitle: "Samfunnet · Campus Ålesund",
   shortDescription:
@@ -160,13 +162,11 @@ export const HALLOWEEN: Event = {
       label: "Natt 01",
       date: "31.10.2026",
       day: "Lørdag",
-      // Foreløpig lineup. "TBA" står som plassholder for den siste
-      // bookingen — bytt den ut med artistnavnet når det er klart.
+      // Endelig lineup slik kvelden faktisk ble spilt.
       lineup: [
-        { name: "Dvask", image: "/images/djs/dvask.jpg", instagram: "https://www.instagram.com/hakonbreivik/" },
-        { name: "Betong", image: "/images/lineup/betong.jpg", instagram: "https://www.instagram.com/betong__/" },
+        { name: "Impact" },
         { name: "Burge", image: "/images/djs/burge.jpg", instagram: "https://www.instagram.com/djburge_/" },
-        { name: "TBA" },
+        { name: "KP", image: "/images/djs/kp.jpg", instagram: "https://www.instagram.com/solvevalderhaug/" },
       ],
     },
   ],
